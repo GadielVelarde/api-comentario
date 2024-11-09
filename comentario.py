@@ -27,3 +27,14 @@ def lambda_handler(event, context):
         'comentario': comentario,
         'response': response
     }
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table(nombre_tabla)
+    response = table.put_item(Item=comentario)
+    # Salida (json)
+    print(comentario)
+    return {
+        'statusCode': 200,
+        'comentario': comentario,
+        'response': response
+    }
+    
